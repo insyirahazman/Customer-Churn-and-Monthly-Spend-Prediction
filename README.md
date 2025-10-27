@@ -1,4 +1,4 @@
-# Customer Analytics — Finalized README
+# Customer Churn and Monthly Spend Prediction
 
 This repository is an end-to-end demo for synthetic customer analytics: data cleaning, feature engineering, training of classification and regression models, and a simple Gradio-based deployment for inference.
 
@@ -34,7 +34,3 @@ This project was completed by:
 2) Robust evaluation and thresholding
 	- Use cross-validation with stratification (StratifiedKFold) to get stable performance estimates.
 	- Calibrate predicted probabilities (CalibratedClassifierCV) if probability estimates are used for thresholding.
-
-3) Feature engineering and validation
-	- Add interaction features, temporal features from `signup_date`, and aggregated session metrics.
-	- Validate feature distributions between training and production (monitor for drift).
