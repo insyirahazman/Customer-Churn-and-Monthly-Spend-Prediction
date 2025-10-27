@@ -27,8 +27,6 @@ This project was completed by:
 1) Class imbalance (classification)
 	- Simple resampling: try SMOTE (oversampling minority), RandomOverSampler, or ADASYN for balanced training.
 	- Under-sampling: RandomUnderSampler or cluster-based under-sampling if dataset is large.
-	- Class weights: many classifiers accept a `class_weight` parameter (e.g., `class_weight='balanced'`) to penalize errors on minority class.
-	- Loss-level approaches: use focal loss (for neural nets) or customized training objective to focus the model on hard examples.
 	- Evaluation: prefer precision/recall, F1, and PR AUC over accuracy. Report class-wise metrics and confusion matrices.
 
 2) Robust evaluation and thresholding
