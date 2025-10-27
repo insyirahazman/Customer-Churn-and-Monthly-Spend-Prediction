@@ -14,6 +14,15 @@ This repository is an end-to-end demo for synthetic customer analytics: data cle
   - `results/model_RF_reg.joblib` — regression model
   - `results/scaler.joblib` — StandardScaler / normalization object for classification model
 
+## Contributors
+
+This project was completed by:
+
+- Nur Insyirah Iman Mohd Azman
+- Nurul Eirda Nurina Abd Halim
+- Hamizah Hasnan
+- Fatin Nur Aisyah Zainal
+
 ## Feature improvements
 1) Class imbalance (classification)
 	- Simple resampling: try SMOTE (oversampling minority), RandomOverSampler, or ADASYN for balanced training.
@@ -25,7 +34,6 @@ This repository is an end-to-end demo for synthetic customer analytics: data cle
 2) Robust evaluation and thresholding
 	- Use cross-validation with stratification (StratifiedKFold) to get stable performance estimates.
 	- Calibrate predicted probabilities (CalibratedClassifierCV) if probability estimates are used for thresholding.
-	- Tune decision thresholds for business KPIs (maximize recall at a minimum precision, or balance cost-sensitive metrics).
 
 3) Feature engineering and validation
 	- Add interaction features, temporal features from `signup_date`, and aggregated session metrics.
