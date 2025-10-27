@@ -1,26 +1,32 @@
-# Customer Analytics
+# Customer Analytics — Finalized README
 
-A small end-to-end demo project that generates a synthetic customer dataset, performs data cleaning and feature engineering, trains classification and regression models, and provides a simple Gradio-based deployment for inference.
+This repository is an end-to-end demo for synthetic customer analytics: data cleaning, feature engineering, training of classification and regression models, and a simple Gradio-based deployment for inference.
 
-This repository is intended for learning and demonstration purposes — it shows a full workflow from data wrangling through model training and lightweight deployment.
+## Project layout
 
-## Contents
+- `01_DataCleaning.ipynb` — data generation and cleaning.
+- `02_classification.ipynb` — preprocessing, feature encoding, model training (classification), and saving artifacts.
+- `03_Regression.ipynb` — regression training for monthly spend.
+- `04_Deployment.ipynb` — Gradio app combining churn classification and spend regression.
+- `cleaned_data_classification.csv`, `cleaned_data_regression.csv` — cleaned datasets used by notebooks.
+- `results/` — directory for saved artifacts (models, encoders, scaler). Example filenames used across notebooks:
+  - `results/model_RF_class.joblib` — classification model
+  - `results/model_RF_reg.joblib` — regression model
+  - `results/scaler.joblib` — StandardScaler / normalization object for classification model
 
-- `01_DataCleaning.ipynb` — data generation and cleaning steps.
-- `02_classification.ipynb` — preprocessing and classification model training; also includes saving of encoders, scaler, and model artifacts.
-- `03_Regression.ipynb` — regression model training for predicting monthly spend.
-- `04_Deployment.ipynb` — combined Gradio deployment (churn classification + spend regression).
-- `cleaned_data` — cleaned data snapshots used by the notebooks.
-- `results/` — folder where trained models and preprocessing artifacts are saved:
-	- `results/model_XGBoost.joblib` (classification model)
-	- `results/model_RF.joblib` (regression model)
-	- `results/scaler.joblib` (StandardScaler used for X)
+## Feature improvements
+1) Class imbalance (classification)
+	- Simple resampling: try SMOTE (oversampling minority), RandomOverSampler, or ADASYN for balanced training.
+	- Under-sampling: RandomUnderSampler or cluster-based under-sampling if dataset is large.
+	- Class weights: many classifiers accept a `class_weight` parameter (e.g., `class_weight='balanced'`) to penalize errors on minority class.
+	- Loss-level approaches: use focal loss (for neural nets) or customized training objective to focus the model on hard examples.
+	- Evaluation: prefer precision/recall, F1, and PR AUC over accuracy. Report class-wise metrics and confusion matrices.
 
-## Notebooks — what to run and in what order
+2) Robust evaluation and thresholding
+	- Use cross-validation with stratification (StratifiedKFold) to get stable performance estimates.
+	- Calibrate predicted probabilities (CalibratedClassifierCV) if probability estimates are used for thresholding.
+	- Tune decision thresholds for business KPIs (maximize recall at a minimum precision, or balance cost-sensitive metrics).
 
-- `01_DataCleaning.ipynb`: Run to generate or inspect the cleaned dataset. Produces `cleaned_data*.csv` files used downstream.
-- `02_classification.ipynb`: Run the preprocessing and classification training cells. Important: this notebook creates a dictionary named `encoders` (mapping categorical column name → fitted LabelEncoder) and saves it to `results/label_encoders.joblib` when you run the final save-artifacts cell. If you plan to use `04_Deployment.ipynb`, re-run preprocessing and the save cell so `results/label_encoders.joblib` exists.
-- `03_Regression.ipynb`: Run the regression training cells. Save the trained regressor into `results/model_RF.joblib` (or the filename referenced in the deployment notebook).
-- `04_Deployment.ipynb`: This notebook builds a combined Gradio app (classification + regression). Before running the deployment cell:
-	- Ensure the `results/` directory contains the model/scaler/encoders with the expected filenames.
-	- If you just installed Gradio, restart the kernel and re-run the deployment cell so Gradio is importable in the session.
+3) Feature engineering and validation
+	- Add interaction features, temporal features from `signup_date`, and aggregated session metrics.
+	- Validate feature distributions between training and production (monitor for drift).
