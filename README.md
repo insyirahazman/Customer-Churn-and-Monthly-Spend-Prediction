@@ -2,6 +2,8 @@
 
 This repository is an end-to-end demo for synthetic customer analytics: data cleaning, feature engineering, training of classification and regression models, and a simple Gradio-based deployment for inference.
 
+https://github.com/user-attachments/assets/527bf76f-74ec-4974-9d2e-d2db489d3c9f
+
 ## Project layout
 
 - `01_DataCleaning.ipynb` — data generation and cleaning.
