@@ -2,13 +2,17 @@
 
 This repository is an end-to-end demo for synthetic customer analytics: data cleaning, feature engineering, training of classification and regression models, and a simple Gradio-based deployment for inference.
 
+Live Website: https://29c264a49bf162c04a.gradio.live/
+
+https://github.com/user-attachments/assets/527bf76f-74ec-4974-9d2e-d2db489d3c9f
+
 ## Project layout
 
 - `01_DataCleaning.ipynb` — data generation and cleaning.
 - `02_classification.ipynb` — preprocessing, feature encoding, model training (classification), and saving artifacts.
 - `03_Regression.ipynb` — regression training for monthly spend.
 - `04_Deployment.ipynb` — Gradio app combining churn classification and spend regression.
-- `cleaned_data_classification.csv`, `cleaned_data_regression.csv` — cleaned datasets used by notebooks.
+- `cleaned_data.csv` — cleaned datasets used by notebooks.
 - `results/` — directory for saved artifacts (models, encoders, scaler). Example filenames used across notebooks:
   - `results/model_RF_class.joblib` — classification model
   - `results/model_RF_reg.joblib` — regression model
