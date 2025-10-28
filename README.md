@@ -2,7 +2,7 @@
 
 This repository is an end-to-end demo for synthetic customer analytics: data cleaning, feature engineering, training of classification and regression models, and a simple Gradio-based deployment for inference.
 
-Live Website: https://87f81f8bdb0e6140af.gradio.live/
+Live Website: https://29c264a49bf162c04a.gradio.live/
 
 https://github.com/user-attachments/assets/527bf76f-74ec-4974-9d2e-d2db489d3c9f
 
